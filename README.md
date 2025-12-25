@@ -20,7 +20,7 @@ ToneDown is an AI-powered profanity muter that processes video files to automati
 
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/QuanTy/ToneDown.git](https://github.com/Telakshan/ToneDown.git)
+    git clone https://github.com/Telakshan/ToneDown.git
     cd ToneDown
     ```
 
