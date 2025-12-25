@@ -1,0 +1,81 @@
+.root {
+    -fx-base: #1e1e1e;
+    -fx-control-inner-background: #2d2d2d;
+    -fx-background-color: #1e1e1e;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #e0e0e0;
+}
+
+.label {
+    -fx-text-fill: #e0e0e0;
+}
+
+.text-area {
+    -fx-font-family: "Consolas", monospace;
+    -fx-control-inner-background: #121212;
+    -fx-text-fill: #00ff00;
+    -fx-border-color: #444;
+    -fx-highlight-fill: #004400;
+}
+
+.button {
+    -fx-background-color: #3d3d3d;
+    -fx-text-fill: white;
+    -fx-border-color: #555;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #4d4d4d;
+}
+
+.button:pressed {
+    -fx-background-color: #0078d7;
+    -fx-border-color: #005a9e;
+}
+
+.progress-bar .track {
+    -fx-background-color: #333;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #0078d7;
+    -fx-background-insets: 0;
+}
+
+.drag-target {
+    -fx-border-color: #0078d7;
+    -fx-border-style: dashed;
+    -fx-border-width: 2;
+    -fx-background-color: #252526;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.drag-target:hover {
+    -fx-background-color: #2d2d30;
+}
+
+.header-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #ffffff;
+}
+
+.sub-header {
+    -fx-font-size: 16px;
+    -fx-fill: #bbbbbb;
+}
+
+.detail-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #aaaaaa;
+}
+
+.detail-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
