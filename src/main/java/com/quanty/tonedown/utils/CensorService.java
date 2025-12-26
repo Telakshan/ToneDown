@@ -45,7 +45,7 @@ public class CensorService {
                             Path subClip = Path.of("bin", "temp", "sub_" + System.currentTimeMillis() + ".wav");
                             ProcessAudio.extractClip(tempClip, subClip, offset, duration - offset);
 
-                            Path result = ProcessLanguage.runWhisper(null, modelPath, subClip);
+                            Path result = ProcessLanguage.runWhisper(modelPath, subClip);
                             List<ProcessLanguage.TranscriptSegment> subSegs = gson.fromJson(
                                     java.nio.file.Files.readString(result),
                                     new TypeToken<List<ProcessLanguage.TranscriptSegment>>() {
@@ -53,8 +53,10 @@ public class CensorService {
 
                             boolean stillHasWord = false;
                             for (ProcessLanguage.TranscriptSegment s : subSegs) {
-                                if (s.text.toLowerCase().contains(badWord))
+                                if (s.text.toLowerCase().contains(badWord)) {
                                     stillHasWord = true;
+                                    break;
+                                }
                             }
 
                             Files.deleteIfExists(subClip);
@@ -73,7 +75,7 @@ public class CensorService {
                             ProcessAudio.extractClip(tempClip, subClip, refinedOffsetStart,
                                     offset - refinedOffsetStart);
 
-                            Path result = ProcessLanguage.runWhisper(null, modelPath, subClip);
+                            Path result = ProcessLanguage.runWhisper(modelPath, subClip);
                             List<ProcessLanguage.TranscriptSegment> subSegs = gson.fromJson(
                                     java.nio.file.Files.readString(result),
                                     new TypeToken<List<ProcessLanguage.TranscriptSegment>>() {
@@ -81,10 +83,13 @@ public class CensorService {
 
                             boolean stillHasWord = false;
                             for (ProcessLanguage.TranscriptSegment s : subSegs) {
-                                if (s.text.toLowerCase().contains(badWord))
+                                if (s.text.toLowerCase().contains(badWord)) {
                                     stillHasWord = true;
+                                    break;
+                                }
                             }
 
+                            Files.deleteIfExists(subClip);
                             Files.deleteIfExists(subClip);
                             Files.deleteIfExists(result);
 

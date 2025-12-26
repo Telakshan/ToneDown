@@ -22,7 +22,7 @@ public class ProcessLanguage {
 
     private static boolean libraryLoaded = false;
 
-    public static Path runWhisper(Path whisperExe, Path modelPath, Path audioFile) throws IOException {
+    public static Path runWhisper(Path modelPath, Path audioFile) throws IOException {
         System.out.println("Transcribing with WhisperJNI...");
 
         if (!libraryLoaded) {
@@ -32,10 +32,8 @@ public class ProcessLanguage {
         }
 
         WhisperJNI whisper = new WhisperJNI();
-        WhisperContext ctx = null;
 
-        try {
-            ctx = whisper.init(modelPath);
+        try (WhisperContext ctx = whisper.init(modelPath)) {
 
             // Read audio file into float array
             float[] samples = readAudioSamples(audioFile);
@@ -75,10 +73,6 @@ public class ProcessLanguage {
 
         } catch (Exception e) {
             throw new IOException("Error during transcription", e);
-        } finally {
-            if (ctx != null) {
-                ctx.close();
-            }
         }
     }
 

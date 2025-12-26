@@ -252,11 +252,10 @@ public class ToneDownApplication extends Application {
                     updateProgress(p * 0.3, 1.0);
                 });
 
-                Path whisperExe = null;
                 Path modelPath = DependencyUtils.getModelPath();
 
                 updateProgress(0.4, 1.0);
-                Path transcript = ProcessLanguage.runWhisper(whisperExe, modelPath, audioFile.toPath());
+                Path transcript = ProcessLanguage.runWhisper(modelPath, audioFile.toPath());
                 updateProgress(0.6, 1.0);
 
                 File outputFile = new File(currentFile.getParent(), "tonedown_" + currentFile.getName());
@@ -281,7 +280,7 @@ public class ToneDownApplication extends Application {
                             "tonedown_verify_" + currentFile.getName() + ".wav");
                     ProcessAudio.extractAudio(outputFile.toPath(), outputAudio.toPath(), null);
 
-                    Path verifyTranscriptPath = ProcessLanguage.runWhisper(null, modelPath, outputAudio.toPath());
+                    Path verifyTranscriptPath = ProcessLanguage.runWhisper(modelPath, outputAudio.toPath());
 
                     List<ProcessLanguage.TranscriptSegment> verifySegments = gson.fromJson(
                             java.nio.file.Files.readString(verifyTranscriptPath),
